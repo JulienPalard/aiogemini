@@ -1,14 +1,14 @@
-from typing import MutableMapping, Protocol, Union
+from typing import MutableMapping, Union
 from cryptography import x509
 from cryptography.x509.oid import NameOID
 
 import os
 import ssl
 
-StrPath = Union[str, os.PathLike[str]]
+StrPath = Union[str, os.PathLike]
 
 
-class SecurityContext(Protocol):
+class SecurityContext:
     def get_client_ssl_context(self, host: str) -> ssl.SSLContext:
         ...
 

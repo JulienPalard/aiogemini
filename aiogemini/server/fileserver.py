@@ -14,8 +14,10 @@ def create_fileserver(
             with target.open('rb') as f:
                 response = Response()
                 response.start(req)
-                while data := f.read(buffersize):
+                data = f.read(buffersize):
+                while data:
                     await response.write(data)
+                    data = f.read(buffersize):
                 await response.write_eof()
                 return response
         except IsADirectoryError:
